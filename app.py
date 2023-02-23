@@ -44,7 +44,6 @@ class WebsiteNyria(Flask):
             if "token" in session:
                 bearer_client = APIClient(session.get("token"), bearer=True)
                 current_user = bearer_client.users.get_current_user()
-                print(current_user.email)
                 return render_template("dashboard.html", user=current_user)
             return redirect("/login")
 
