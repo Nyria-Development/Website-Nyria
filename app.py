@@ -1,13 +1,23 @@
 from flask import Flask, render_template, request, session, redirect
-import config
 from zenora import APIClient
+import json
 
 
 class WebsiteNyria(Flask):
     def __init__(self):
         super().__init__(__name__)
-        self.client = APIClient(token=config.TOKEN, client_secret=config.CLIENT_SECRET)
-        self.config["SECRET_KEY"] = "secretkey"
+
+        with open("config.json", "r") as c:
+            self.__config = json.load(c)
+
+            self.__token = self.__config["TOKEN"]
+            self.__client_secret = self.__config["CLIENT_SECRET"]
+            self.__redirect_url = self.__config["REDIRECT_URL"]
+            self.__oauth_url = self.__config["OAUTH_URL"]
+            self.__secret_key = self.__config["SECRET_KEY"]
+
+        self.client = APIClient(token=self.__token, client_secret=self.__client_secret)
+        self.config["SECRET_KEY"] = self.__secret_key
 
         @self.route("/")
         def index():
@@ -15,7 +25,7 @@ class WebsiteNyria(Flask):
 
         @self.route("/login")
         def login():
-            return render_template("login.html", oauth_url=config.OAUTH_URL)
+            return render_template("login.html", oauth_url=self.__oauth_url)
 
         @self.route("/logout")
         def logout():
@@ -25,7 +35,7 @@ class WebsiteNyria(Flask):
         @self.route("/oauth/callback")
         def callback():
             code = request.args["code"]
-            access_token = self.client.oauth.get_access_token(code, config.REDIRECT_URL).access_token
+            access_token = self.client.oauth.get_access_token(code, self.__redirect_url).access_token
             session["token"] = access_token
             return redirect("/dashboard")
 
