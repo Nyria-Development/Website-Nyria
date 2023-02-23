@@ -2,3 +2,4 @@
 /venv
 /static/img
 config.py
+config.json
