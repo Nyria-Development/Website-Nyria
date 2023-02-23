@@ -35,7 +35,7 @@ class WebsiteNyria(Flask):
                 bearer_client = APIClient(session.get("token"), bearer=True)
                 current_user = bearer_client.users.get_current_user()
                 return render_template("dashboard.html", user=current_user)
-            return render_template("index.html")
+            return redirect("/")
 
         @self.errorhandler(404)
         def page_not_found(error):
