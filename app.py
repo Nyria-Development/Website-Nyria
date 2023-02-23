@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session, redirect
 from zenora import APIClient
 import json
+import datetime
 
 
 class WebsiteNyria(Flask):
@@ -42,9 +43,10 @@ class WebsiteNyria(Flask):
         @self.route("/dashboard")
         def dashboard():
             if "token" in session:
+                current_year = datetime.date.today().year
                 bearer_client = APIClient(session.get("token"), bearer=True)
                 current_user = bearer_client.users.get_current_user()
-                return render_template("dashboard.html", user=current_user)
+                return render_template("dashboard.html", user=current_user, year=current_year)
             return redirect("/login")
 
         @self.errorhandler(404)
