@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{user.username}}</title>
+</head>
+<body>
+<p>id: {{user.id}}</p>
+<p>name: {{user.username}}</p>
+<p>discriminator: {{user.discriminator}}</p>
+<p>banner: {{user.banner}}</p>
+<p>banner_color: {{user.banner_color}}</p>
+<p>accent_color: {{user.accent_color}}</p>
+<p>public_flags: {{user.public_flags}}</p>
+<p>bio: {{user.bio}}</p>
+<p>avatar: {{user.avatar}}</p>
+<p>avatar_url: {{user.avatar_url}}</p>
+<img src={{user.avatar_url}}>
+<p>bot: {{user.is_bot}}</p>
+<p>system: {{user.is_system}}</p>
+<p>mfa_enabled: {{user.mfa_enabled}}</p>
+<p>locale: {{user.locale}}</p>
+<p>verified: {{user.verified}}</p>
+
+<p>Guilds:</p>
+{% for guild in guild %}
+<p>{{guild['name']}}</p>
+{% endfor %}
+
+</body>
+</html>

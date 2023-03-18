@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard | {{user.username}}</title>
+  <title>Dashboard | {{user.username}}#{{user}}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -317,12 +317,6 @@
         </a>
       </li><!-- End Profile Page Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
-          <i class="bi bi-envelope"></i>
-          <span>Contact</span>
-        </a>
-      </li><!-- End Contact Page Nav -->
 
     </ul>
 
@@ -342,122 +336,17 @@
 
     <section class="section">
       <div class="row">
-        
+        {% for guild in guild %}
         <div class="col-lg-3">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Example Card</h5>
-              <p>This is an examle page with no content.</p>
+              <h5 class="card-title">{{guild.name}}</h5>
+              <p>{{guild.description}}</p>
+              <img src={{guild.icon_url}}>
             </div>
           </div>
         </div>
-
-        <div class="col-lg-3">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Example Card</h5>
-              <p>This is an examle page with no content.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Example Card</h5>
-              <p>This is an examle page with no content.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Example Card</h5>
-              <p>This is an examle page with no content.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="row">
-        
-        <div class="col-lg-3">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Example Card</h5>
-              <p>This is an examle page with no content.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Example Card</h5>
-              <p>This is an examle page with no content.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Example Card</h5>
-              <p>This is an examle page with no content.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Example Card</h5>
-              <p>This is an examle page with no content.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="row">
-        
-        <div class="col-lg-3">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Example Card</h5>
-              <p>This is an examle page with no content.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Example Card</h5>
-              <p>This is an examle page with no content.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Example Card</h5>
-              <p>This is an examle page with no content.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Example Card</h5>
-              <p>This is an examle page with no content.</p>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
 
       </div>
     </section>

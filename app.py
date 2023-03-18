@@ -46,7 +46,18 @@ class WebsiteNyria(Flask):
                 current_year = datetime.date.today().year
                 bearer_client = APIClient(session.get("token"), bearer=True)
                 current_user = bearer_client.users.get_current_user()
-                return render_template("dashboard.html", user=current_user, year=current_year)
+                my_guild = bearer_client.users.get_my_guilds()
+                return render_template("dashboard.html", user=current_user, year=current_year, guild=my_guild)
+            return redirect("/login")
+
+        @self.route("/test")
+        def test():
+            if "token" in session:
+                current_year = datetime.date.today().year
+                bearer_client = APIClient(session.get("token"), bearer=True)
+                current_user = bearer_client.users.get_current_user()
+                my_guild = bearer_client.users.get_my_guilds()
+                return render_template("test.html", user=current_user, year=current_year, guild=my_guild)
             return redirect("/login")
 
         @self.errorhandler(404)
