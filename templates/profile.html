@@ -224,7 +224,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="/profile">
+              <a class="dropdown-item d-flex align-items-center" href="/test">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -311,7 +311,7 @@
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/profile">
+        <a class="nav-link collapsed" href="#">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>
@@ -325,28 +325,37 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Dashboard</h1>
+      <h1>Profile</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
+          <li class="breadcrumb-item active">Profile</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
     <section class="section">
       <div class="row">
-        {% for guild in guild %}
+
         <div class="col-lg-3">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">{{guild.name}}</h5>
-              <p>{{guild.permissions}}</p>
-              <img src={{guild.icon_url}}>
+              <h5 class="card-title">User Name:</h5>
+              <p>{{user.username}}</p>
+              <p>{{user.discriminator}}</p>
             </div>
           </div>
         </div>
-        {% endfor %}
+
+        <div class="col-lg-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">User Profile</h5>
+              <img src={{user.avatar_url}}>
+            </div>
+          </div>
+        </div>
+
 
       </div>
     </section>

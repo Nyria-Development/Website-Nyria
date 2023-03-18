@@ -60,6 +60,16 @@ class WebsiteNyria(Flask):
                 return render_template("test.html", user=current_user, year=current_year, guild=my_guild)
             return redirect("/login")
 
+        @self.route("/profile")
+        def profile():
+            if "token" in session:
+                current_year = datetime.date.today().year
+                bearer_client = APIClient(session.get("token"), bearer=True)
+                current_user = bearer_client.users.get_current_user()
+                my_guild = bearer_client.users.get_my_guilds()
+                return render_template("profile.html", user=current_user, year=current_year, guild=my_guild)
+            return redirect("/login")
+
         @self.errorhandler(404)
         def page_not_found(error):
             return render_template('404.html'), 404
