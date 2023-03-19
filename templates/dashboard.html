@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="de">
 
 <head>
@@ -35,11 +35,17 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script>
+    $(function(){
+      $("#header").load("header.html");
+      $("#footer").load("footer.html");
+    });
+  </script>
 </head>
 
 <body>
-
-  <!-- ======= Header ======= -->
+<!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
@@ -322,7 +328,7 @@
 
   </aside><!-- End Sidebar-->
 
-  <main id="main" class="main">
+<main id="main" class="main">
 
     <div class="pagetitle">
       <h1>Dashboard</h1>
@@ -338,22 +344,24 @@
       <div class="row">
         {% for guild in guild %}
         <div class="col-lg-3">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">{{guild.name}}</h5>
-              <p>{{guild.permissions}}</p>
-              <img src={{guild.icon_url}}>
+          <a href="/guild/{{guild.id}}">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{guild.name}}</h5>
+                <img src={{guild.icon_url}}>
+                <p>{{guild.id}}</p>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
         {% endfor %}
 
       </div>
     </section>
 
-  </main><!-- End #main -->
+</main><!-- End #main -->
 
-  <!-- ======= Footer ======= -->
+   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
       &copy; {{year}} <strong><span>nyria</span></strong>. Alle Rechte vorbehalten.
@@ -366,6 +374,7 @@
       <a href="https://bootstrapmade.com/">BootstrapMade</a>
     </div>
   </footer><!-- End Footer -->
+
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -381,6 +390,5 @@
 
   <!-- Template Main JS File -->
   <script src="static/js/main.js"></script>
-
 </body>
 </html>

@@ -5,6 +5,7 @@
     <title>{{user.username}}</title>
 </head>
 <body>
+<p>{{test_var}}</p>
 <p>id: {{user.id}}</p>
 <p>name: {{user.username}}</p>
 <p>discriminator: {{user.discriminator}}</p>
@@ -26,6 +27,5 @@
 {% for guild in guild %}
 <p>{{guild['name']}}</p>
 {% endfor %}
-
 </body>
 </html>
