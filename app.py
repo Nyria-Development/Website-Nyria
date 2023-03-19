@@ -60,6 +60,16 @@ class WebsiteNyria(Flask):
                 return render_template("test.html", user=current_user, year=current_year, guild=my_guild)
             return redirect("/login")
 
+        @self.route("/guild")
+        def guild():
+            if "token" in session:
+                current_year = datetime.date.today().year
+                bearer_client = APIClient(session.get("token"), bearer=True)
+                current_user = bearer_client.users.get_current_user()
+                guilds = bearer_client.users.get_my_guilds()
+                return render_template("allGuilds.html", user=current_user, year=current_year, guild=guilds)
+            return redirect("/login")
+
         @self.route("/guild/<guild_id>")
         def test_var(guild_id):
             if "token" in session:

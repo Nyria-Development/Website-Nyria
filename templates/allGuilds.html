@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="de">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard | {{user.username}}#{{user.discriminator}}</title>
+  <title>Dashboard | {{user.username}}#{{user}}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -35,11 +35,17 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script>
+    $(function(){
+      $("#header").load("header.html");
+      $("#footer").load("footer.html");
+    });
+  </script>
 </head>
 
 <body>
-
-  <!-- ======= Header ======= -->
+<!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
@@ -151,40 +157,45 @@
 
   </aside><!-- End Sidebar-->
 
-  <main id="main" class="main">
-     <div class="pagetitle">
-      <h1>Profile</h1>
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/dashboard">{{user.username}}</a></li>
-          <li class="breadcrumb-item active">Profile</li>
+          <li class="breadcrumb-item active">Guilds</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-          <div class="row gutters-sm">
-            <div class="col-md-4 mb-3">
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex flex-column align-xitems-center text-center">
-                    <img src="{{user.avatar_url}}" class="rounded-circle mx-auto d-block" width="100" style="margin-top: 25px">
-                    <div class="mt-3">
-                      <h4>{{user.username}}</h4>
-                      <p class="text-secondary mb-1">#{{user.discriminator}}</p>
-                      <p class="text-muted font-size-sm">{{user.bio if user.bio else ""}}</p>
-                    </div>
-                  </div>
-                </div>
+    <section class="section">
+      <div class="row">
+        {% for guild in guild %}
+        <div class="col-lg-3">
+          <a href="/guild/{{guild.id}}">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title" style="text-align: center">{{guild.name}}</h5>
+                {% if guild.icon_url != None %}
+                  <img src={{guild.icon_url}} class="rounded mx-auto d-block">
+                {% else %}
+                  <img src="static/img/discordLogo.jpg" class="rounded mx-auto d-block" width="125">
+                {% endif %}
+                <hr>
+                <p>{{guild.id}}</p>
               </div>
             </div>
-          </div>
+          </a>
+        </div>
+        {% endfor %}
 
       </div>
     </section>
 
-  </main><!-- End #main -->
+</main><!-- End #main -->
 
-  <!-- ======= Footer ======= -->
+   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
       &copy; {{year}} <strong><span>nyria</span></strong>. Alle Rechte vorbehalten.
@@ -197,6 +208,7 @@
       <a href="https://bootstrapmade.com/">BootstrapMade</a>
     </div>
   </footer><!-- End Footer -->
+
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -212,6 +224,5 @@
 
   <!-- Template Main JS File -->
   <script src="static/js/main.js"></script>
-
 </body>
 </html>
