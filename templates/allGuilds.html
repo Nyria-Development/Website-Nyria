@@ -178,9 +178,9 @@
               <div class="card-body">
                 <h5 class="card-title" style="text-align: center">{{guild.name}}</h5>
                 {% if guild.icon_url != None %}
-                  <img src={{guild.icon_url}} class="rounded mx-auto d-block">
+                  <img src={{guild.icon_url}} alt="Guild Icon" class="rounded mx-auto d-block">
                 {% else %}
-                  <img src="static/img/discordLogo.jpg" class="rounded mx-auto d-block" width="125">
+                  <img src="static/img/discordLogo.jpg" alt="standard Guild Icon" class="rounded mx-auto d-block" width="125">
                 {% endif %}
                 <hr>
                 <p>{{guild.id}}</p>
