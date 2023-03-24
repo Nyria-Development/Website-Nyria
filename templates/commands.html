@@ -152,58 +152,27 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/dashboard">{{user.username}}</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
+          <li class="breadcrumb-item"><a href="/help">Help</a></li>
+          <li class="breadcrumb-item"><a href="/command-list">Modules</a></li>
+          <li class="breadcrumb-item active">{{module}}</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
     <section class="section">
       <div class="row">
-        <div class="col-md-4 mb-2">
-          <a href="/profile">
+        {% for command in commands %}
+        <div class="col-lg-3">
+          <a href="/command-list/{{module}}/{{command['command_name']}}">
             <div class="card">
               <div class="card-body">
-                <div class="d-flex flex-column align-xitems-center text-center">
-                  <img src="{{user.avatar_url}}" class="rounded-circle mx-auto d-block" width="100" style="margin-top: 25px">
-                  <div class="mt-3">
-                    <h4>{{user.username}}</h4>
-                    <p class="text-secondary mb-1">Your Profile</p>
-                  </div>
-                </div>
+                <h5 class="card-title" style="text-align: center">{{command['command_name']}}</h5>
+                <p class="text-secondary mb-1">{{command['description']}}</p>
               </div>
             </div>
           </a>
         </div>
-        <div class="col-md-4 mb-2">
-          <a href="/guild">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex flex-column align-xitems-center text-center">
-                  <img src="{{user.avatar_url}}" class="rounded-circle mx-auto d-block" width="100" style="margin-top: 25px">
-                  <div class="mt-3">
-                    <h4>Guilds</h4>
-                    <p class="text-secondary mb-1">Your Guild List</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-4 mb-2">
-          <a href="/help">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex flex-column align-xitems-center text-center">
-                  <i class="bi bi-info-circle" style="font-size: 4.2rem"></i>
-                  <div class="mt-3">
-                    <h4>Help</h4>
-                    <p class="text-secondary mb-1">Find out all about functions and Commands and how to use them</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
+        {% endfor %}
 
       </div>
     </section>

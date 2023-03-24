@@ -1,0 +1,324 @@
+[
+        {
+            "module": "diasio",
+            "command_name": "diasio-dice",
+            "description": "Generate a random number.",
+            "options": [
+                "first_number",
+                "second_number"
+            ]
+        },
+        {
+            "module": "diasio",
+            "command_name": "diasio-minecraft-server-stats",
+            "description": "Show minecraft server stats.",
+            "options": [
+                "server_name",
+                "server_type",
+                "port"
+            ]
+        },
+        {
+            "module": "diasio",
+            "command_name": "diasio-translate",
+            "description": "Translate any text in the most languages.",
+            "options": [
+                "text",
+                "language"
+            ]
+        },
+        {
+            "module": "kanio",
+            "command_name": "kanio-ticket-remove-user",
+            "description": "Remove an user from a ticket",
+            "options": [
+                "user",
+                "ticket"
+            ]
+        },
+        {
+            "module": "kanio",
+            "command_name": "kanio-voice-claim",
+            "description": "Claim a talk",
+            "options": [
+                "voice_channel"
+            ]
+        },
+        {
+            "module": "kanio",
+            "command_name": "kanio-voice-unban",
+            "description": "Ban any user from your voice channel.",
+            "options": [
+                "voice_channel",
+                "user"
+            ]
+        },
+        {
+            "module": "kanio",
+            "command_name": "kanio-voting",
+            "description": "Create a voting",
+            "options": [
+                "question",
+                "vote"
+            ]
+        },
+        {
+            "module": "kanio",
+            "command_name": "kanio-ticket-close",
+            "description": "Close a ticket",
+            "options": []
+        },
+        {
+            "module": "kanio",
+            "command_name": "kanio-voice-limit",
+            "description": "Set a limit for your voice channel.",
+            "options": [
+                "voice_channel",
+                "limit"
+            ]
+        },
+        {
+            "module": "kanio",
+            "command_name": "kanio-voice-ban",
+            "description": "Ban any user from your voice channel.",
+            "options": [
+                "voice_channel",
+                "user"
+            ]
+        },
+        {
+            "module": "kanio",
+            "command_name": "kanio-ticket",
+            "description": "Do you need help? Here you can create a ticket.",
+            "options": []
+        },
+        {
+            "module": "kanio",
+            "command_name": "kanio-voice-current-settings",
+            "description": "Show the current voice settings.",
+            "options": [
+                "voice_channel"
+            ]
+        },
+        {
+            "module": "kanio",
+            "command_name": "kanio-voting-create",
+            "description": "Create a voting",
+            "options": [
+                "question",
+                "vote"
+            ]
+        },
+        {
+            "module": "kanio",
+            "command_name": "kanio-voice-rename",
+            "description": "Rename your voice channel.",
+            "options": [
+                "voice_channel",
+                "new_name"
+            ]
+        },
+        {
+            "module": "kanio",
+            "command_name": "kanio-voice-change-host",
+            "description": "Change the host.",
+            "options": [
+                "voice_channel",
+                "user"
+            ]
+        },
+        {
+            "module": "kanio",
+            "command_name": "kanio-voice-kick",
+            "description": "Kick any user from your voice channel.",
+            "options": [
+                "voice_channel",
+                "user"
+            ]
+        },
+        {
+            "module": "kanio",
+            "command_name": "kanio-ticket-add-user",
+            "description": "Add an user to a ticket",
+            "options": [
+                "user",
+                "ticket"
+            ]
+        },
+        {
+            "module": "local",
+            "command_name": "local-test-1",
+            "description": "Try it ",
+            "options": []
+        },
+        {
+            "module": "metrio",
+            "command_name": "metrio-discord-get-leveling",
+            "description": "Get Your leveling Settings on Discord",
+            "options": []
+        },
+        {
+            "module": "metrio",
+            "command_name": "metrio-unban",
+            "description": "Unban a member",
+            "options": [
+                "user"
+            ]
+        },
+        {
+            "module": "metrio",
+            "command_name": "metrio-discord-level",
+            "description": "Get the Level of you or someone from DC",
+            "options": [
+                "discord_user"
+            ]
+        },
+        {
+            "module": "metrio",
+            "command_name": "metrio-list-commands-old",
+            "description": "List of all commands",
+            "options": []
+        },
+        {
+            "module": "metrio",
+            "command_name": "metrio-set-level-role",
+            "description": "Set a Role for a Level",
+            "options": [
+                "level_role",
+                "level"
+            ]
+        },
+        {
+            "module": "metrio",
+            "command_name": "metrio-confi-log-settings",
+            "description": "Configurate the log settings for your discord.",
+            "options": [
+                "log_channel",
+                "log",
+                "message_log",
+                "reaction_log",
+                "on_member_log"
+            ]
+        },
+        {
+            "module": "metrio",
+            "command_name": "metrio-remove-level-role",
+            "description": "Remove a Role for a Level",
+            "options": []
+        },
+        {
+            "module": "metrio",
+            "command_name": "metrio-create-level-role",
+            "description": "Create your own Role for a Level",
+            "options": [
+                "role_name",
+                "level",
+                "colour"
+            ]
+        },
+        {
+            "module": "metrio",
+            "command_name": "metrio-kick",
+            "description": "Kick any member from the discord server.",
+            "options": [
+                "user",
+                "reason"
+            ]
+        },
+        {
+            "module": "metrio",
+            "command_name": "metrio-get-log-settings",
+            "description": "Get the log settings for your discord.",
+            "options": []
+        },
+        {
+            "module": "metrio",
+            "command_name": "metrio-discord-set-leveling",
+            "description": "Activate leveling on your Discord",
+            "options": [
+                "leveling_status",
+                "leveling_speed"
+            ]
+        },
+        {
+            "module": "metrio",
+            "command_name": "metrio-ban",
+            "description": "Ban a member",
+            "options": [
+                "user",
+                "reason"
+            ]
+        },
+        {
+            "module": "metrio",
+            "command_name": "metrio-discord-level_leaderboard",
+            "description": "Find the best Users on this Discord",
+            "options": []
+        },
+        {
+            "module": "noirio",
+            "command_name": "noirio-ai",
+            "description": "Configure and control the bot over chatting.",
+            "options": [
+                "control"
+            ]
+        },
+        {
+            "module": "plirio",
+            "command_name": "plirio-user-stats",
+            "description": "Show server stats from a user.",
+            "options": [
+                "user"
+            ]
+        },
+        {
+            "module": "plirio",
+            "command_name": "plirio-server-stats",
+            "description": "Show current discord server stats.",
+            "options": []
+        },
+        {
+            "module": "plirio",
+            "command_name": "plirio-credits",
+            "description": "Thanks for your support!",
+            "options": []
+        },
+        {
+            "module": "pyrio",
+            "command_name": "pyrio-bug",
+            "description": "You found a bug? Here you can report it.",
+            "options": [
+                "bug"
+            ]
+        },
+        {
+            "module": "pyrio",
+            "command_name": "pyrio-setup-voice",
+            "description": "Setup your voice system.",
+            "options": []
+        },
+        {
+            "module": "pyrio",
+            "command_name": "pyrio-list-commands",
+            "description": "List of all commands. Seconde Function",
+            "options": []
+        },
+        {
+            "module": "pyrio",
+            "command_name": "pyrio-help",
+            "description": "Generate a random number.",
+            "options": []
+        },
+        {
+            "module": "pyrio",
+            "command_name": "pyrio-ping",
+            "description": "Show the ping from the bot.",
+            "options": []
+        },
+        {
+            "module": "temp",
+            "command_name": "temp-test",
+            "description": "Try it ",
+            "options": []
+        }
+]

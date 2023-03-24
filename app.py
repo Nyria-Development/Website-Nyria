@@ -47,6 +47,7 @@ class WebsiteNyria(Flask):
                 bearer_client = APIClient(session.get("token"), bearer=True)
                 current_user = bearer_client.users.get_current_user()
                 my_guild = bearer_client.users.get_my_guilds()
+                print(my_guild)
                 return render_template("dashboard.html", user=current_user, year=current_year, guild=my_guild)
             return redirect("/login")
 
@@ -89,6 +90,59 @@ class WebsiteNyria(Flask):
                 current_user = bearer_client.users.get_current_user()
                 my_guild = bearer_client.users.get_my_guilds()
                 return render_template("profile.html", user=current_user, year=current_year, guild=my_guild)
+            return redirect("/login")
+
+        @self.route("/help")
+        def help():
+            if "token" in session:
+                current_year = datetime.date.today().year
+                bearer_client = APIClient(session.get("token"), bearer=True)
+                current_user = bearer_client.users.get_current_user()
+                my_guild = bearer_client.users.get_my_guilds()
+                return render_template("help.html", user=current_user, year=current_year, guild=my_guild)
+            return redirect("/login")
+
+        @self.route("/command-list")
+        def modules():
+            if "token" in session:
+                current_year = datetime.date.today().year
+                bearer_client = APIClient(session.get("token"), bearer=True)
+                current_user = bearer_client.users.get_current_user()
+                my_guild = bearer_client.users.get_my_guilds()
+                with open("static/files/commands.json", 'r') as f:
+                    command_list = json.load(f)
+                    list_of_modules = list({command['module']: command['module'] for command in command_list}.values())
+                return render_template("modules.html", user=current_user, year=current_year, guild=my_guild, modules=list_of_modules)
+            return redirect("/login")
+
+        @self.route("/command-list/<module>")
+        def commands(module):
+            if "token" in session:
+                current_year = datetime.date.today().year
+                bearer_client = APIClient(session.get("token"), bearer=True)
+                current_user = bearer_client.users.get_current_user()
+                my_guild = bearer_client.users.get_my_guilds()
+                with open("static/files/commands.json", 'r') as f:
+                    command_list = json.load(f)
+                    module_commands = [command for command in command_list if command['module'] == module]
+                    print(module_commands)
+                return render_template("commands.html", user=current_user, year=current_year, guild=my_guild,
+                                       commands=module_commands, module=module)
+            return redirect("/login")
+
+        @self.route("/command-list/<module>/<command_name>")
+        def command(module, command_name):
+            if "token" in session:
+                current_year = datetime.date.today().year
+                bearer_client = APIClient(session.get("token"), bearer=True)
+                current_user = bearer_client.users.get_current_user()
+                my_guild = bearer_client.users.get_my_guilds()
+                with open("static/files/commands.json", 'r') as f:
+                    command_list = json.load(f)
+                    command_dic = [command for command in command_list if command['command_name'] == command_name][0]
+                    print(command_dic)
+                return render_template("command.html", user=current_user, year=current_year, guild=my_guild,
+                                       command=command_dic, module=module)
             return redirect("/login")
 
         @self.errorhandler(404)
