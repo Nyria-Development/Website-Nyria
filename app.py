@@ -58,7 +58,7 @@ class WebsiteNyria(Flask):
                 bearer_client = APIClient(session.get("token"), bearer=True)
                 current_user = bearer_client.users.get_current_user()
                 my_guild = bearer_client.users.get_my_guilds()
-                return render_template("test.html", user=current_user, year=current_year, guild=my_guild)
+                return render_template("include.html", user=current_user, year=current_year, guild=my_guild)
             return redirect("/login")
 
         @self.route("/guild")
