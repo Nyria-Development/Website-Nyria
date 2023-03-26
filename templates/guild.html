@@ -49,7 +49,7 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/dashboard">{{user.username}}</a></li>
-          <li class="breadcrumb-item"><a href="/guild">Guilds</a></li>
+          <li class="breadcrumb-item"><a href="/guild">Discords</a></li>
           <li class="breadcrumb-item active">{{guild.name}}</li>
         </ol>
       </nav>
@@ -61,7 +61,7 @@
         <div class="col-lg">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Guild Info:</h5>
+              <h5 class="card-title">Discord Info:</h5>
               <p>Name: {{guild.name}}</p>
               <p>ID: {{guild.id}}</p>
               <p>Owner Status: {{"You are the Owner" if guild.owner == True else "You are not the Owner"}}</p>
