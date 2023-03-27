@@ -1,5 +1,8 @@
 from flask import Flask, render_template, request, session, redirect
 from zenora import APIClient
+from database.check import Check
+from database.loader import level
+from database.loader import log
 import json
 import datetime
 
@@ -15,7 +18,10 @@ class WebsiteNyria(Flask):
             self.__client_secret = self.__config["CLIENT_SECRET"]
             self.__redirect_url = self.__config["REDIRECT_URL"]
             self.__oauth_url = self.__config["OAUTH_URL"]
+            self.bot_url = self.__config["BOT_URL"]
             self.__secret_key = self.__config["SECRET_KEY"]
+
+        self.load_guild_database_info()
 
         self.client = APIClient(token=self.__token, client_secret=self.__client_secret)
         self.config["SECRET_KEY"] = self.__secret_key
@@ -74,12 +80,16 @@ class WebsiteNyria(Flask):
         @self.route("/guild/<guild_id>")
         def test_var(guild_id):
             if "token" in session:
+                self.load_guild_database_info()
                 current_year = datetime.date.today().year
                 bearer_client = APIClient(session.get("token"), bearer=True)
                 current_user = bearer_client.users.get_current_user()
                 guilds = bearer_client.users.get_my_guilds()
                 my_guild = [guild for guild in guilds if guild.id == int(guild_id)][0]
-                return render_template("guild.html", user=current_user, year=current_year, guild=my_guild)
+                level_status = level.get_leveling_server(int(guild_id))
+                log_info = log.get_log_info(int(guild_id))
+                return render_template("guild.html", user=current_user, year=current_year, guild=my_guild,
+                                       level_status=level_status, log_info=log_info, bot_url=self.bot_url)
             return redirect("/login")
 
         @self.route("/profile")
@@ -112,7 +122,8 @@ class WebsiteNyria(Flask):
                 with open("static/files/commands.json", 'r') as f:
                     command_list = json.load(f)
                     list_of_modules = list({command['module']: command['module'] for command in command_list}.values())
-                return render_template("modules.html", user=current_user, year=current_year, guild=my_guild, modules=list_of_modules)
+                return render_template("modules.html", user=current_user, year=current_year, guild=my_guild,
+                                       modules=list_of_modules)
             return redirect("/login")
 
         @self.route("/command-list/<module>")
@@ -125,7 +136,6 @@ class WebsiteNyria(Flask):
                 with open("static/files/commands.json", 'r') as f:
                     command_list = json.load(f)
                     module_commands = [command for command in command_list if command['module'] == module]
-                    print(module_commands)
                 return render_template("commands.html", user=current_user, year=current_year, guild=my_guild,
                                        commands=module_commands, module=module)
             return redirect("/login")
@@ -140,7 +150,6 @@ class WebsiteNyria(Flask):
                 with open("static/files/commands.json", 'r') as f:
                     command_list = json.load(f)
                     command_dic = [command for command in command_list if command['command_name'] == command_name][0]
-                    print(command_dic)
                 return render_template("command.html", user=current_user, year=current_year, guild=my_guild,
                                        command=command_dic, module=module)
             return redirect("/login")
@@ -149,6 +158,14 @@ class WebsiteNyria(Flask):
         def page_not_found(error):
             return render_template('404.html'), 404
 
+    def load_guild_database_info(self):
+        level.load_leveling_servers()
+        log.load_log_channels()
+
+
 
 if __name__ == "__main__":
+    #Check for Database
+    Check().inspect()
+    #start the web-server
     WebsiteNyria().run(debug=True)
