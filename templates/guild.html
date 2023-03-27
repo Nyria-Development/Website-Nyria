@@ -64,7 +64,7 @@
               <h5 class="card-title">Discord Info:</h5>
               <p>Name: {{guild.name}}</p>
               <p>ID: {{guild.id}}</p>
-              <p>Owner Status: {{"You are the Owner" if guild.owner == True else "You are not the Owner"}}</p>
+              <p>Your Permission: {{guild.permissions}}</p>
             </div>
           </div>
         </div>
@@ -81,6 +81,31 @@
             </div>
           </div>
         </div>
+
+        {% set permission_num = guild.permissions | int %}
+        {% set guild_id = guild.id | int %}
+        {% if permission_num == 35184372088831 %}
+          <div class="col-lg">
+            <div class="card">
+              <div class="card-body text-center">
+                <h5 class="card-title" style="text-align: center">Admin</h5>
+                {% if guild_id == 1078731236098449408 %}
+                <p>{{"Level Staus: ON" if level_status else "Level Staus: OFF"}}</p>
+                <h5>Log-Infos</h5>
+                <p>{{"Log: ON" if log_info[1] else "Log: OFF"}}</p>
+                <p>{{"Message Log: ON" if log_info[2] else "Message Log: OFF"}}</p>
+                <p>{{"Reaction Log: ON" if log_info[3] else "Reaction Log: OFF"}}</p>
+                <p>{{"Member Log: ON" if log_info[4] else "Member Log: OFF"}}</p>
+                {% else %}
+                <p>This Discord is not supported by Nyria Yet</p>
+                <a href={{bot_url}} role="button" class="btn btn-secondary btn-lg btn-block" target="_blank">
+                  <i class="bi bi-discord"></i> Get Nyria
+                </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
 
 
       </div>
