@@ -21,6 +21,8 @@ class WebsiteNyria(Flask):
             self.bot_url = self.__config["BOT_URL"]
             self.__secret_key = self.__config["SECRET_KEY"]
 
+            self.nyria_guilds = [35184372088831, 533319983388819467, 1043477521473212547] #später anpassen
+
         self.load_guild_database_info()
 
         self.client = APIClient(token=self.__token, client_secret=self.__client_secret)
@@ -67,14 +69,30 @@ class WebsiteNyria(Flask):
                 return render_template("include.html", user=current_user, year=current_year, guild=my_guild)
             return redirect("/login")
 
-        @self.route("/guild")
+        @self.route("/guild", methods = ['GET', 'POST'])
         def guild():
             if "token" in session:
                 current_year = datetime.date.today().year
                 bearer_client = APIClient(session.get("token"), bearer=True)
                 current_user = bearer_client.users.get_current_user()
                 guilds = bearer_client.users.get_my_guilds()
-                return render_template("allGuilds.html", user=current_user, year=current_year, guild=guilds)
+                if request.method == 'POST':
+                    post_requ = int(request.form['sb'])
+                    if post_requ == 1:
+                        new_guilds = [guild for guild in guilds if int(guild.permissions) == 35184372088831]
+                        new_title = "Guilds, where you are admin"
+                    elif post_requ == 2:
+                        new_guilds = [guild for guild in guilds if guild.id in self.nyria_guilds]
+                        new_title = "Guilds with Nyria Bot"
+                    elif post_requ == 3:
+                        new_guilds = [guild for guild in guilds if guild.id in self.nyria_guilds and guild.owner]
+                        new_title = "Guilds, where you are admin and Nyria Bot"
+                    else:
+                        new_guilds=guilds
+                        new_title = "All Guilds"
+                    return render_template("allGuilds.html", user=current_user, year=current_year, guilds=new_guilds,
+                                           title=new_title)
+                return render_template("allGuilds.html", user=current_user, year=current_year, guilds=guilds, title="All Guilds")
             return redirect("/login")
 
         @self.route("/guild/<guild_id>")
@@ -89,7 +107,8 @@ class WebsiteNyria(Flask):
                 level_status = level.get_leveling_server(int(guild_id))
                 log_info = log.get_log_info(int(guild_id))
                 return render_template("guild.html", user=current_user, year=current_year, guild=my_guild,
-                                       level_status=level_status, log_info=log_info, bot_url=self.bot_url)
+                                       level_status=level_status, log_info=log_info, bot_url=self.bot_url,
+                                       nyria_guild=[True if int(guild_id) in self.nyria_guilds else False][0])
             return redirect("/login")
 
         @self.route("/profile")

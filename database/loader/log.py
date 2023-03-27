@@ -41,6 +41,7 @@ def get_log_on_state(server_id: int, on_event: int):
         return
     return __logs_settings[server_id][on_event]
 
+
 def get_log_info(server_id: int):
     if server_id not in __logs_settings:
         return
