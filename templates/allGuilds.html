@@ -53,14 +53,24 @@
       </nav>
     </div><!-- End Page Title -->
 
-    <form method="post">
-      <button name="sb" value="0" class="btn btn-dark">All</button>
-      <button name="sb" value="1" class="btn btn-dark">Admin</button>
-      <button name="sb" value="2" class="btn btn-dark">Nyria</button>
-      <button name="sb" value="3" class="btn btn-dark">Nyria-Admin</button>
-    </form>
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <form method="post">
+            <div class="btn-group mr-2" role="group" aria-label="Second group">
+              <button name="sb" value="0" class="btn btn-dark">All</button>
+              <button name="sb" value="1" class="btn btn-dark">Admin</button>
+              <button name="sb" value="2" class="btn btn-dark">Nyria</button>
+              <button name="sb" value="3" class="btn btn-dark">Nyria-Admin</button>
+            </div>
+          </form>
+        </div>
+        <div class="col-8">
+          <h2>{{title}}</h2>
+        </div>
+      </div>
+    </div>
 
-    <h2>{{title}}</h2>
     <section class="section">
       <div class="row">
         {% for guild in guilds %}

@@ -21,7 +21,7 @@ class WebsiteNyria(Flask):
             self.bot_url = self.__config["BOT_URL"]
             self.__secret_key = self.__config["SECRET_KEY"]
 
-            self.nyria_guilds = [35184372088831, 533319983388819467, 1043477521473212547] #später anpassen
+            self.nyria_guilds = [1078731236098449408, 533319983388819467, 1043477521473212547] #später anpassen
 
         self.load_guild_database_info()
 
