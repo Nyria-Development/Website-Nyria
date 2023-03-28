@@ -106,9 +106,16 @@ class WebsiteNyria(Flask):
                 my_guild = [guild for guild in guilds if guild.id == int(guild_id)][0]
                 level_status = level.get_leveling_server(int(guild_id))
                 log_info = log.get_log_info(int(guild_id))
+                user_level = {}
+                if level_status:
+                    with open('static/files/levels.json', 'r') as f:
+                        guild_levels = json.load(f)[str(guild_id)]
+                        user_level = [user_level for user_level in guild_levels if user_level['discordUserID']==int(current_user.id)][0]
+                        user_level.update({'progress_pz': int((2**(user_level['level']+1)-user_level['xp'])*100/(2**(user_level['level']+1)))})
                 return render_template("guild.html", user=current_user, year=current_year, guild=my_guild,
                                        level_status=level_status, log_info=log_info, bot_url=self.bot_url,
-                                       nyria_guild=[True if int(guild_id) in self.nyria_guilds else False][0])
+                                       nyria_guild=[True if int(guild_id) in self.nyria_guilds else False][0],
+                                       user_level=user_level)
             return redirect("/login")
 
         @self.route("/profile")

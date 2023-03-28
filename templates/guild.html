@@ -61,54 +61,86 @@
         <div class="col-lg">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Discord Info:</h5>
-              <p>Name: {{guild.name}}</p>
-              <p>ID: {{guild.id}}</p>
-              <p>Your Permission: {{guild.permissions}}</p>
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title">Discord Info:</h5>
+                  <p>Name: {{guild.name}}</p>
+                  <p>ID: {{guild.id}}</p>
+                  <p>Your Permission: {{guild.permissions}}</p>
+                </div>
+                <div class="col">
+                  <h5 class="card-title" style="text-align: center">Guild Icon</h5>
+                  {% if guild.icon_url != None %}
+                    <img src={{guild.icon_url}} alt="Guild Icon" class="rounded mx-auto d-block">
+                  {% else %}
+                    <img src="static/img/discordLogo.jpg" alt="standard Guild Icon" class="rounded mx-auto d-block" width="125">
+                  {% endif %}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-        <div class="col-lg">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title" style="text-align: center">Guild Icon</h5>
-              {% if guild.icon_url != None %}
-                <img src={{guild.icon_url}} alt="Guild Icon" class="rounded mx-auto d-block">
-              {% else %}
-                <img src="static/img/discordLogo.jpg" alt="standard Guild Icon" class="rounded mx-auto d-block" width="125">
-              {% endif %}
-            </div>
-          </div>
-        </div>
-
-        {% set permission_num = guild.permissions | int %}
-        {% set guild_id = guild.id | int %}
-        {% if permission_num == 35184372088831 %}
+        {% if nyria_guild %}
           <div class="col-lg">
             <div class="card">
               <div class="card-body text-center">
-                <h5 class="card-title" style="text-align: center">Admin</h5>
-                {% if nyria_guild %}
-                <p>{{"Level Staus: ON" if level_status else "Level Staus: OFF"}}</p>
-                <h5>Log-Infos</h5>
-                <p>{{"Log: ON" if log_info[1] else "Log: OFF"}}</p>
-                <p>{{"Message Log: ON" if log_info[2] else "Message Log: OFF"}}</p>
-                <p>{{"Reaction Log: ON" if log_info[3] else "Reaction Log: OFF"}}</p>
-                <p>{{"Member Log: ON" if log_info[4] else "Member Log: OFF"}}</p>
+                <h5 class="card-title" style="text-align: center">Your Server Level Profile</h5>
+                {% if user_level %}
+                  <p>Level:  {{user_level['level']}}</p>
+                  <p>XP:  {{user_level['xp']}}</p>
+                  <p>Progress to next Level:</p>
+                  <div class="progress">
+                    <div class="progress-bar bg-secondary" role="progressbar" style="width: {{user_level['progress_pz']}}%;" aria-valuenow="{{user_level['progress_pz']}}" aria-valuemin="0" aria-valuemax="100">
+                      {{user_level['progress_pz']}}%</div>
+                  </div>
                 {% else %}
-                <p>This Discord is not supported by Nyria Yet</p>
-                <a href={{bot_url}} role="button" class="btn btn-secondary btn-lg btn-block" target="_blank">
-                  <i class="bi bi-discord"></i> Get Nyria
-                </a>
+                  <p>There hasn't been Level Progression yet ._.</p>
                 {% endif %}
               </div>
             </div>
           </div>
         {% endif %}
-
-
       </div>
+
+      {% set permission_num = guild.permissions | int %}
+      {% set guild_id = guild.id | int %}
+      {% if permission_num == 35184372088831 %}
+        <div class="row">
+          <div class="col-lg">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title" style="text-align: center">Admin - Information</h4>
+                {% if nyria_guild %}
+                <div class="row">
+                  <div class="col-lg">
+                    <h5 style="color: #7289da">Level-Infos</h5>
+                    <p>{{"Level Staus: ON" if level_status else "Level Staus: OFF"}}</p>
+                  </div>
+                  <div class="col-lg">
+                    <h5 style="color: #7389db">Log-Infos</h5>
+                    <p>{{"Log: ON" if log_info[1] else "Log: OFF"}}</p>
+                    <p>{{"Message Log: ON" if log_info[2] else "Message Log: OFF"}}</p>
+                    <p>{{"Reaction Log: ON" if log_info[3] else "Reaction Log: OFF"}}</p>
+                    <p>{{"Member Log: ON" if log_info[4] else "Member Log: OFF"}}</p>
+                  </div>
+                </div>
+                {% else %}
+                <div class="text-center">
+                  <p>This Discord is not supported by Nyria Yet</p>
+                  <a href={{bot_url}} role="button" class="btn btn-secondary btn-lg btn-block" target="_blank" style="background: #7289da">
+                    <i class="bi bi-discord"></i> Get Nyria
+                  </a>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+
+
+
     </section>
 
   </main><!-- End #main -->
