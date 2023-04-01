@@ -1,2 +1,3 @@
 Flask
 zenora
+mysql-connector-python
