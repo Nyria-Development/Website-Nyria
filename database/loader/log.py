@@ -7,7 +7,7 @@ query = Query(
 __logs_settings = {}  # for guild: [channel_id(0), log_active(1), message_log(2), reaction_log(3), member_log(4)]
 
 
-async def config_log_settings(server_id: int, log_channel_id, log, message_log, reaction_log, on_member_log):
+def config_log_settings(server_id: int, log_channel_id, log, message_log, reaction_log, on_member_log):
     data = query.execute(
         query="SELECT * FROM logs WHERE serverId=%s",
         data=[int(server_id)]
