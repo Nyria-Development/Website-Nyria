@@ -30,10 +30,15 @@ class WebsiteNyria(Flask):
 
         @self.route("/")
         def index():
-            return render_template("index.html")
+            login_status = "Login"
+            if "token" in session:
+                login_status = "Dashboard"
+            return render_template("index.html", bot_url=self.bot_url, discord_count=1415, login_status=login_status)
 
         @self.route("/login")
         def login():
+            if "token" in session:
+                return redirect("/dashboard")
             return render_template("login.html", oauth_url=self.__oauth_url)
 
         @self.route("/logout")

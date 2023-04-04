@@ -1,0 +1,10 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css');
+html,
+body {
+  font-family: "Open Sans", sans-serif;
+
+  color: var(--text-color);
+}
+.container{
+    height: 100%;
+}

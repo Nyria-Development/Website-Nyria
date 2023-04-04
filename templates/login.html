@@ -1,14 +1,58 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <title>Login | Nyria</title>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <link rel="stylesheet" href="/static/css/login.css">
+  <title>Nyria | Login</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="static/img/favicon.png" rel="icon">
+  <link href="static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="static/vendor/aos/aos.css" rel="stylesheet">
+  <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="static/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="static/css/style-2.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Mentor
+  * Updated: Mar 10 2023 with Bootstrap v5.2.3
+  * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
-    <body>
-        <a href="{{oauth_url}}">
-            <button>Login with discord</button>
-        </a>
-    </body>
+<body style="height: 100vh; background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(static/img/discord_bg.jpg) top center; background-attachment: fixed;">
+  <div class="container d-flex align-items-center justify-content-center" style="height: 100%;">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex flex-column align-xitems-center text-center">
+            <img src="static/img/nyria_logo.png" class="rounded-circle mx-auto d-block" width="100" style="margin-top: 25px">
+            <div class="mt-3">
+              <h2 class="text-white">Login with Discord</h2>
+              <div class="d-grid gap-2">
+                <a type="button" class="btn btn-light" href="{{oauth_url}}">
+                    <i class="bi bi-discord"></i>
+                    Login
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</body>
 </html>
